@@ -35,14 +35,14 @@ def get_main_df():
     #doesn't look like I need to sort the indexes for what we are doing, keeping it here for reference.
 
     return main_df
+
+def get_city_list():
+    df = get_main_df()
+    df.reset_index(inplace=True)
+    return df['Region'].unique().tolist()
 #main_df.loc['2019-02-01', 'National', 'Townhouse']
 #Since there are three indexes, you can use .loc to specifically find the datapoint as per Time/Region/Type
 #If you want to refer to the actual datapoint and not this list of data, see the next cell.
-
-
-
-df=get_main_def()
-print(df.head())
 
 
 
