@@ -40,9 +40,20 @@ def get_city_list():
     df = get_main_df()
     df.reset_index(inplace=True)
     return df['Region'].unique().tolist()
-#main_df.loc['2019-02-01', 'National', 'Townhouse']
-#Since there are three indexes, you can use .loc to specifically find the datapoint as per Time/Region/Type
-#If you want to refer to the actual datapoint and not this list of data, see the next cell.
+
+def get_tax_rates():
+    # Return a data frame with columns Region, state_code, tax_rate
+    #   for all cities in our main dataframe
+    main_df = get_main_df()
+    main_df.reset_index(inplace=True)
+    df = pd.DataFrame(main_df.Region.unique(), columns=(['Region']))
+    df['state_code'] = df['Region'].apply(lambda x: x[-2:])
+    tax_df = pd.read_csv("./data/tax_rates_state.csv")
+    df_final = pd.merge(df, tax_df, how='right', on=['state_code', 'state_code'])
+    df_final.dropna(inplace=True)
+    df_final['tax_rate'] = df_final['tax_rate'].str.replace(r'%', '', regex=True).astype('float') / 100
+    df_final.reset_index(inplace=True, drop=True)
+    return df_final
 
 
 
