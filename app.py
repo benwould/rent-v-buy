@@ -33,6 +33,9 @@ def get_main_df():
     main_df['Median sale price YoY']=main_df['Median sale price YoY'].astype('float')
     #main_df.sort_index(level=['Month', 'Region', 'For-Sale Property Type'], ascending=[2, 1, 0], inplace=True)
     #doesn't look like I need to sort the indexes for what we are doing, keeping it here for reference.
+    
+    main_df = main_df.loc[slice(None), ['Austin, TX', 'San Diego, CA', 'Atlanta, GA', 'Washington, DC', 'West Palm Beach, FL', 'Indianapolis, IN', 'Pittsburg, PA', 'Detroit, MI', 'Denver, CO', 'Boston, MA'], slice(None)]
+
 
     return main_df
 
