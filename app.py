@@ -37,7 +37,7 @@ def get_main_df():
     main_df['Median sale price YoY']=main_df['Median sale price YoY'].astype('float')
 
     #shorten the DF to only include chosen cities
-    main_df = main_df.loc[slice(None), ['Austin, TX', 'San Diego, CA', 'Atlanta, GA', 'Washington, DC', 'West Palm Beach, FL', 'Indianapolis, IN', 'Pittsburg, PA', 'Detroit, MI', 'Denver, CO', 'Boston, MA'], : ]
+    main_df = main_df.loc[slice(None), ['Austin, TX', 'San Diego, CA', 'Atlanta, GA', 'Washington, DC', 'West Palm Beach, FL', 'Indianapolis, IN', 'Pittsburgh, PA', 'Detroit, MI', 'Denver, CO', 'Boston, MA'], : ]
     return main_df
 
 def get_city_list():
