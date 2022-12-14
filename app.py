@@ -102,5 +102,40 @@ def av_rent(city):
     main_df = main_df.iloc[-1]
     return main_df
 
+def yoy_rent(city):
+    main_df=get_main_df()
+    main_df = main_df.drop(columns=['Monthly mortgage, 5% down', 'Monthly mortgage, 20% down', 'Monthly mortgage, 5% down YoY', 'Monthly mortgage, 20% down YoY', 'Median sale price YoY','Average Rent YoY','Median sale price']).drop_duplicates().reset_index('Region')
+    main_df=main_df.loc[main_df['Region']== city]
+    main_df=main_df['Average Monthly Rent'].pct_change().dropna().mean()*12
+    main_df = round(main_df * 100)
+    
+    return main_df
 
 
+def med_home_val(city):
+    main_df = get_main_df()
+    idx=pd.IndexSlice
+    main_df = main_df.loc[idx[:, city], 'Median sale price']
+    main_df = main_df.iloc[-1]
+    return main_df
+
+def yoy_home_val(city):
+    main_df = get_main_df()
+    idx=pd.IndexSlice
+    main_df = main_df.loc[idx[:, city], 'Median sale price YoY']
+    main_df = main_df.iloc[-1]
+    return main_df
+
+def mort_5(city):
+    main_df = get_main_df()
+    idx=pd.IndexSlice
+    main_df = main_df.loc[idx[:, city], 'Monthly mortgage, 5% down']
+    main_df = main_df.iloc[-1]
+    return main_df
+
+def mort_20(city):
+    main_df = get_main_df()
+    idx=pd.IndexSlice
+    main_df = main_df.loc[idx[:, city], 'Monthly mortgage, 20% down']
+    main_df = main_df.iloc[-1]
+    return main_df
