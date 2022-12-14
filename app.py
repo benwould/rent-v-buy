@@ -97,6 +97,7 @@ def get_tax_rates():
 
 def av_rent(city):
     main_df = get_main_df()
+    idx=pd.IndexSlice
     main_df = main_df.loc[idx[:, city], 'Average Monthly Rent']
     main_df = main_df.iloc[-1]
     return main_df

@@ -190,7 +190,7 @@ class Page1(tk.Frame):
         if not city :
             self.av_rent.set('City not selected')
             return
-        city += app.av_rent(city)
+        city += ' ' + f'has an average rent of: {str(app.av_rent(city))}'
         self.av_rent.set(city)
         
         
