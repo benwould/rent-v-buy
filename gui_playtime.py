@@ -84,16 +84,19 @@ class StartPage(Page):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
         
+        self.configure(bg='green')
+        
         # label of frame Layout 2
-        label = ttk.Label(self, text ="Rent vs Buy: User Data", font = LARGEFONT)
-         
+        #label = ttk.Label(self, text ="Rent vs Buy: User Data", font = LARGEFONT)
+        #label.place(anchor=CENTER)
+        
         my_city = tk.StringVar(self, name="My City",value='')
         
-        label = tk.Label( self , text = "What city will you move to?" )
-        label.grid(row=0,column=3)
+        label = tk.Label(self, font = ('Times New Roman', 25), text = "What city will you move to?" )
+        label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
         drop_cities = tk.OptionMenu( self , my_city , *app.get_city_list(), command = self.cache_city)
-        drop_cities.grid(row=1,column=3)
+        drop_cities.place(relx=0.5, rely=0.6, anchor=CENTER)
 
         data_labal_var = tk.StringVar()
         data_label = tk.Label(self, textvariable=data_labal_var)
@@ -106,7 +109,9 @@ class StartPage(Page):
 class Page1(Page):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
-
+        
+        self.configure(bg='green')
+        
         self.title_svar=tk.StringVar()
         tk.Label(self, textvariable = self.title_svar, font = LARGEFONT).grid(row = 0, column = 1, padx = 10, pady = 10)
 
@@ -125,7 +130,7 @@ class Page1(Page):
         self.yoy_rent = tk.StringVar()
         label_yoy_rent = tk.Label( self , textvariable = self.yoy_rent )
         label_yoy_rent.grid(row=2,column=1)
-               #Median Home Value in Area
+        #Median Home Value in Area
         self.med_hval = tk.StringVar()
         label_med_hval = tk.Label( self , textvariable = self.med_hval  )
         label_med_hval.grid(row=3,column=1)
@@ -166,7 +171,22 @@ class Page2(Page):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        self.label = ttk.Label(self, text ="Page 2", font = LARGEFONT)
-        self.label.grid(row = 0, column = 4, padx = 10, pady = 10)
+        self.title_svar=tk.StringVar()
+        tk.Label(self, textvariable = self.title_svar, font = LARGEFONT).grid(row = 0, column = 0, padx = 10, pady = 10)
+        
+        
+        #NEED TO CHANGE THIS TO THE DATAFRAMES WE ARE USING
+        df = app.get_main_df() 
+        text = tk.Text(self)
+        text.insert(tk.END, str(df))
+        text.grid()
 
+        self.configure(bg='green')
+        
+    def pre_show(self):
+        city = self.controller.app_vars['city']
+        if not city :
+            self.title_svar.set('Please Select a City')
+            return
+        self.title_svar.set(f"Table Data for {city}")
 tkinterApp().mainloop()
