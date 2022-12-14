@@ -90,10 +90,10 @@ class StartPage(Page):
         my_city = tk.StringVar(self, name="My City",value='')
         
         label = tk.Label( self , text = "What city will you move to?" )
-        label.grid(row=0,column=0)
+        label.grid(row=0,column=3)
 
         drop_cities = tk.OptionMenu( self , my_city , *app.get_city_list(), command = self.cache_city)
-        drop_cities.grid(row=0,column=1)
+        drop_cities.grid(row=1,column=3)
 
         data_labal_var = tk.StringVar()
         data_label = tk.Label(self, textvariable=data_labal_var)
