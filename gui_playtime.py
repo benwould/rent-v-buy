@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 import app
+import tkintermapview
+import pandas as pd
 
 LARGEFONT =("Verdana", 35)
 
@@ -64,7 +66,8 @@ class tkinterApp(tk.Tk):
         self.page_map = {
             "Start Page": StartPage(container, self),
             "Page 1": Page1(container, self),
-            "Page 2": Page2(container, self)
+            "Page 2": Page2(container, self), 
+            "Page 3": Page3(container, self)
         }
         for page in self.page_map.values():
             page.grid(row=0, column=0, sticky="nsew")
@@ -86,7 +89,7 @@ class StartPage(Page):
         
         self.configure(bg='green')
         
-        # label of frame Layout 2
+        #label of frame Layout 2
         #label = ttk.Label(self, text ="Rent vs Buy: User Data", font = LARGEFONT)
         #label.place(anchor=CENTER)
         
@@ -184,9 +187,22 @@ class Page2(Page):
         self.configure(bg='green')
         
     def pre_show(self):
-        city = self.controller.app_vars['city']
+        city = self.controller.app_vars['city'] 
         if not city :
             self.title_svar.set('Please Select a City')
             return
         self.title_svar.set(f"Table Data for {city}")
+        
+        
+class Page3(Page):
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+        
+    def pre_show(self):
+        city = self.controller.app_vars['city']
+        self.map_widget = tkintermapview.TkinterMapView(self, width=800, height=600, corner_radius=0)
+        self.map_widget.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.map_widget.set_zoom(15)
+        self.map_widget.set_address(self.controller.app_vars['city'])
+        
 tkinterApp().mainloop()
