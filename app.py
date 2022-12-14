@@ -139,3 +139,19 @@ def mort_20(city):
     main_df = main_df.loc[idx[:, city], 'Monthly mortgage, 20% down']
     main_df = main_df.iloc[-1]
     return main_df
+
+#NOT CURRENTLY BEING USED FOR ANYTHING
+def calc_equity_over_time_df(region, current_equity, mortgage_15_or_30):
+    monthly_payment_totals = mortgage_15_or_30 * 12
+    fut_home_value = app.get_main_df()
+    idx=pd.IndexSlice
+    fut_home_value= fut_home_value.loc[idx[:, region], 'Median sale price']
+    fut_home_value = fut_home_value.iloc[16]
+    fut_monthly_payment = (fut_home_value - current_equity) / monthly_payment_totals
+    future_equity = 0
+    future_equity_count = []
+    for i in range(monthly_payment_totals):
+        future_equity = future_equity + fut_monthly_payment
+        i = fut_monthly_payment + current_equity
+        future_equity_count.append(future_equity)
+    return pd.DataFrame(future_equity_count)
