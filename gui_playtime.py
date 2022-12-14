@@ -23,7 +23,7 @@ class Navbar(tk.Frame):
         self.parent = parent
         self.buttons = []
         self.nav_pages = []
-
+        
         for label, page in zip(labels, pages):
             self.register_page(label, page)
 
@@ -52,7 +52,7 @@ class tkinterApp(tk.Tk):
         self.app_vars = {
             "city": None
         }
-
+        
         # Create container
         container = tk.Frame(self) 
         container.pack(side = "top", fill = "both", expand = True)
@@ -113,10 +113,10 @@ class Page1(Page):
         self.configure(bg='green')
         
         self.title_svar=tk.StringVar()
-        tk.Label(self, textvariable = self.title_svar, font = LARGEFONT).grid(row = 0, column = 1, padx = 10, pady = 10)
+        tk.Label(self, textvariable = self.title_svar, font = ('Times New Roman', 25)).place(relx=0.5, rely=0.1, anchor=N)
 
-        self.result_var = tk.StringVar()
-        tk.Label(self, textvariable=self.result_var).grid(row = 1, column = 4, padx = 10, pady = 10)
+        #self.result_var = tk.StringVar()
+        #tk.Label(self, textvariable=self.result_var).place(relx=0.5, rely=0.5, anchor=S)
         
         
         #app.get_info(THIS IS WHERE THE VARIABLE USER INPUT WILL GO, HOW DO I REFER TO THE APP-VARS?
@@ -124,31 +124,31 @@ class Page1(Page):
         #AVERAGE RENT IN AREA
         self.av_rent = tk.StringVar()
         label_av_rent = tk.Label(self , textvariable = self.av_rent)
-        label_av_rent.grid(row=1,column=1)
+        label_av_rent.place(relx=0.5, rely=0.9, anchor=S)
         
         #YoY % Rent
         self.yoy_rent = tk.StringVar()
         label_yoy_rent = tk.Label( self , textvariable = self.yoy_rent )
-        label_yoy_rent.grid(row=2,column=1)
+        label_yoy_rent.place(relx=0.5, rely=0.8, anchor=S)
         #Median Home Value in Area
         self.med_hval = tk.StringVar()
         label_med_hval = tk.Label( self , textvariable = self.med_hval  )
-        label_med_hval.grid(row=3,column=1)
+        label_med_hval.place(relx=0.5, rely=0.7, anchor=S)
         
         #YoY% increase home priced
         self.yoy_inc_home = tk.StringVar()
         label_yoy_inc_home = tk.Label( self , textvariable = self.yoy_inc_home )
-        label_yoy_inc_home.grid(row=4,column=1)
+        label_yoy_inc_home.place(relx=0.5, rely=0.6, anchor=S)
         
         #mortgage payment if 5%
         self.mort_5 = tk.StringVar()
         label_mort_5 = tk.Label( self , textvariable = self.mort_5 )
-        label_mort_5.grid(row=5,column=1)
+        label_mort_5.place(relx=0.5, rely=0.5, anchor=S)
         
         #mortgage payment if 20%
         self.mort_20 = tk.StringVar()
         label_mort_20 = tk.Label( self , textvariable = self.mort_20 )
-        label_mort_20.grid(row=6,column=1)
+        label_mort_20.place(relx=0.5, rely=0.4, anchor=S)
 
 
     def pre_show(self):
