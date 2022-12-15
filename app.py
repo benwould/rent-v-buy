@@ -187,22 +187,61 @@ def calc_mortgage(city):
             sum_monthly_balance = np.sum(monthly_balance)
 
         output_dict = {}
-        output_dict["Home Price($)"] = sales_price
+        output_dict["City"] = city
+        output_dict["Home Price($)"] = round(sales_price)
         output_dict["Down Payment(%)"] = down_payment_pct
-        output_dict["Loan Amount($)"] = sales_price * (1 - down_payment_pct / 100)
+        output_dict["Loan Amount($)"] = round(sales_price * (1 - down_payment_pct / 100))
         output_dict["Interest Rate(%)"] = interest_rate
         output_dict["Loan Duration(months)"] = loan_term
-        output_dict["Monthly Principal (P&I)"] = mortgage_monthly
-        output_dict["Monthly Taxes"] = (sales_price * property_tax_pct)/12
-        output_dict["Total Monthly Payment"] = mortgage_monthly + (sales_price * property_tax_pct)/12
-        output_dict["Total Cost of Loan"] = paid_loan_amount
-        output_dict["Total Interest Paid"] = sum_monthly_interest
+        #output_dict["Monthly Principal (P&I)"] = mortgage_monthly
+        output_dict["Monthly Taxes"] = round((sales_price * property_tax_pct)/12)
+        output_dict["Total Monthly Payment"] = round(mortgage_monthly + (sales_price * property_tax_pct)/12)
+        output_dict["Total Cost of Loan"] = round(paid_loan_amount)
+        #output_dict["Total Interest Paid"] = sum_monthly_interest
         # print the following sets of data for the user for the entire term of the loan
 
         outputs.append(output_dict)
     df = pd.DataFrame.from_records(outputs,index=['1','2','3','4'])
     return df
 
+
+# Chat GPT --> "python pandas amortization schedule for a 30 year fixed mortgage"
+def amort_schedule(loan_amount, interest_rate, num_periods):
+    df_schedule = pd.DataFrame(columns=['period', 'interest', 'principal', 'cumulative_interest', 'cumulative_principal'])
+
+    # Set the loan amount, interest rate, and number of periods
+    # loan_amount = 100000
+    # interest_rate = 0.05
+    # num_periods = 360
+
+    # Calculate the periodic payment amount
+    payment = (interest_rate / 12) * loan_amount / (1 - (1 + (interest_rate / 12)) ** (-num_periods))
+
+    # Iterate over the number of periods and calculate the interest and principal payments
+    # for each period
+    for period in range(1, num_periods + 1):
+        interest_payment = round(loan_amount * (interest_rate / 12), 2)
+        principal_payment = round(payment - interest_payment, 2)
+        loan_amount -= principal_payment
+
+        # Add the interest and principal payments for this period to the schedule data frame
+        df_schedule.loc[period] = [period, interest_payment, principal_payment, 0, 0]
+
+    # Calculate the cumulative interest and principal payments
+    df_schedule['cumulative_interest'] = df_schedule['interest'].cumsum()
+    df_schedule['cumulative_principal'] = df_schedule['principal'].cumsum()
+
+    # Round the values in the data frame to the desired precision
+    df_schedule = df_schedule.round(2)
+
+    # Format the values in the data frame for display
+    df_schedule.style.format({
+        'interest': '{:.2f}',
+        'principal': '{:.2f}',
+        'cumulative_interest': '{:.2f}',
+        'cumulative_principal': '{:.2f}'
+    })
+    return df_schedule
 
 #NOT CURRENTLY BEING USED FOR ANYTHING
 def calc_equity_over_time_df(region, current_equity, mortgage_15_or_30):

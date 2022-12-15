@@ -16,7 +16,7 @@ import app
 def calc_mortgage(city):
 
     sales_price = app.med_home_val(city)
-    property_tax_pct = app.property_tax_pct(city)
+    property_tax_pct = app.prop_tax_pct(city)
 
     loan_terms = [{"down_payment_pct":5, "interest_rate":6.3, "mortgage_years":15}
                   ,{"down_payment_pct":20, "interest_rate":5.831, "mortgage_years":15}
@@ -54,6 +54,7 @@ def calc_mortgage(city):
             sum_monthly_balance = np.sum(monthly_balance)
 
         output_dict = {}
+        output_dict["City"] = city
         output_dict["Home Price($)"] = sales_price
         output_dict["Down Payment(%)"] = down_payment_pct
         output_dict["Loan Amount($)"] = sales_price * (1 - down_payment_pct / 100)
@@ -67,15 +68,8 @@ def calc_mortgage(city):
         # print the following sets of data for the user for the entire term of the loan
 
         outputs.append(output_dict)
-        # print(f"The Home Sales Price is: = ${sales_price}")
-        # print(f"The Down Payment as a Percentage of Sales Price is: = {down_payment_pct} %")
-        # print(f"The Loan Amount is: = {sales_price * (1 - down_payment_pct / 100)} ")
-        # print(f"The Interest Rate on Annual Percentage Basis is: = {interest_rate} %")
-        # print(f"The duration of this loan, that is the Loan Term (in months) is: = {loan_term} month")
-        # print(f"Total Paid Loan amount over your {loan_term} months was {paid_loan_amount: .2f}")
-        # print(f"Monthly Payment for this Mortgage(P & I) is: = {mortgage_monthly: .2f}")
-        # print(f"Total interest paid over life cycle of the loan is: = {(sum_monthly_interest): .2f}")
     df = pd.DataFrame.from_records(outputs,index=['1', '2','3','4'])
     return df
 
-
+df = calc_mortgage('Austin, TX')
+df.to_csv('test_calc.csv')
