@@ -111,7 +111,6 @@ def yoy_rent(city):
     
     return main_df
 
-
 def med_home_val(city):
     main_df = get_main_df()
     idx=pd.IndexSlice
@@ -140,10 +139,18 @@ def mort_20(city):
     main_df = main_df.iloc[-1]
     return main_df
 
+def property_tax_pct(city):
+    main_df = get_main_df()
+    idx=pd.IndexSlice
+    main_df = main_df.loc[idx[:, city], 'tax_rate']
+    main_df = main_df.iloc[-1]
+    return main_df
+
+
 #NOT CURRENTLY BEING USED FOR ANYTHING
 def calc_equity_over_time_df(region, current_equity, mortgage_15_or_30):
     monthly_payment_totals = mortgage_15_or_30 * 12
-    fut_home_value = app.get_main_df()
+    fut_home_value = get_main_df()
     idx=pd.IndexSlice
     fut_home_value= fut_home_value.loc[idx[:, region], 'Median sale price']
     fut_home_value = fut_home_value.iloc[16]
