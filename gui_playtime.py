@@ -175,19 +175,19 @@ class Page2(Page):
         super().__init__(parent, controller)
 
         self.title_svar=tk.StringVar()
-        tk.Label(self, textvariable = self.title_svar, font = LARGEFONT).grid(row = 0, column = 0, padx = 10, pady = 10)
+        tk.Label(self, textvariable = self.title_svar, font = LARGEFONT).place(relx=0.5, rely=0.1, anchor=N)
         
         
         #NEED TO CHANGE THIS TO THE DATAFRAMES WE ARE USING
-        df = app.get_main_df() 
-        text = tk.Text(self)
-        text.insert(tk.END, str(df))
-        text.grid()
+
 
         self.configure(bg='green')
-        
     def pre_show(self):
-        city = self.controller.app_vars['city'] 
+        city = self.controller.app_vars['city']
+        df = app.calc_mortgage(city) 
+        text = tk.Text(self)
+        text.insert(tk.END, str(df))
+        text.place(relx=0.5, rely=0.6, anchor=CENTER)
         if not city :
             self.title_svar.set('Please Select a City')
             return
