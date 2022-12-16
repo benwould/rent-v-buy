@@ -13,7 +13,9 @@ This code was created with Python 3.9 and Jupyter Lab
 
 * [pandas] - To create DataFrames and create functions to manipulate the DataFrames into various outputs
 
-* [tkinter] - For greating the GUI input field and for displaying our outputs as graphs, dataframes, and 
+* [tkinter] - For creating the GUI input field and for displaying our outputs as graphs, dataframes, and
+
+* [tkintermapview] - For creating a map view widget within tkinter
 
 * [numpy] - For creating mortgage calculations
 
@@ -29,6 +31,7 @@ pip install pandas
 pip install numpy
 pip install matplotlib
 pip install tkinter
+pip install tkintermapview
 
 '''
 
@@ -36,8 +39,7 @@ pip install tkinter
 
 Welcome to our Rent v. Buy application!
 
-To begin this application run our File "GUI _____.ipynb" this creates 
-a pop out GUI where we are presented with our first step.
+To begin this application open our File "gui_notebook.ipynb" in jupyter notebook. Run the cell containing the code, then maximize the Tkinter window that opens. This creates a pop out GUI where we are presented with our first step.
 
 Step 1: Select the city we are moving to, the dropdown menu displays 10 cities that can be selected from
 
