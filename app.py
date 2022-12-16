@@ -243,6 +243,34 @@ def amort_schedule(loan_amount, interest_rate, num_periods):
     })
     return df_schedule
 
+def city_rent_v_buy(city,interest_rate):
+    df_amort = pd.DataFrame()
+    sales_price = med_home_val(city)
+    tax_rate = prop_tax_pct(city)
+    df_amort = amort_schedule(sales_price,interest_rate=interest_rate,num_periods=360)
+    df_amort['city'] = city
+    df_amort['interest_rate'] = interest_rate
+    df_amort['rent'] = av_rent(city)
+    df_amort['cumulative_rent'] = -1*df_amort['rent'].cumsum()
+    df_amort['taxes'] = tax_rate * sales_price/12
+    df_amort['cumulative_taxes'] = tax_rate * sales_price/12
+    df_amort['cumulative_buying_profits'] = df_amort['cumulative_principal'] - (df_amort['cumulative_interest']+df_amort['cumulative_taxes'])
+
+    return df_amort
+
+def rent_v_buy_all_cities(interest_rate):
+    cities = get_city_list()
+    df_city_amorts = pd.DataFrame()
+    i=1
+    for city in cities:
+        df = city_rent_v_buy(city,interest_rate)
+        if i==1:
+            df_city_amorts = df
+        else:
+            df_city_amorts = df_city_amorts.append(df)
+        i+=1
+    return df_city_amorts
+
 #NOT CURRENTLY BEING USED FOR ANYTHING
 def calc_equity_over_time_df(region, current_equity, mortgage_15_or_30):
     monthly_payment_totals = mortgage_15_or_30 * 12
