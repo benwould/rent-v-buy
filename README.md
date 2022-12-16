@@ -21,24 +21,19 @@ This code was created with Python 3.9 and Jupyter Lab
 
 * [matplotlib] - For implementing our plots and data into our GUI
 
-
+* [ChatGpt] (https://openai.com/blog/chatgpt/) - For creating amortization tables.
 
 ## Installation Guide
-
-
-'''python
-pip install pandas
-pip install numpy
-pip install matplotlib
-pip install tkinter
-pip install tkintermapview
-
-'''
+pip install -r Requirements.txt
 
 ## Usage
 
 Welcome to our Rent v. Buy application!
+Note there are two 'entry points' to our project
+1. A tkinter gui application (gui_notebook.ipynb)
+2. A notebook for data visualization (plots.ipynb)
 
+### The Tkinter Gui
 To begin this application open our File "gui_notebook.ipynb" in jupyter notebook. Run the cell containing the code, then maximize the Tkinter window that opens. This creates a pop out GUI where we are presented with our first step.
 
 Step 1: Select the city we are moving to, the dropdown menu displays 10 cities that can be selected from
