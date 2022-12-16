@@ -1,9 +1,9 @@
 # rent-v-buy
 
 
-We have been hired as a Fintech data analyst at FTX. We will have to determine where to move to next. FTX has offices in 10 cities across the US. We get to select one to move too, the question is which one makes the most fiscal sense to move to. We need to determine if we should purchase a home with a mortgage on various terms or rent our new home in your selected city.
+We have been hired as a Fintech data analyst at FTX. We will have to determine where to move to next. FTX has offices in 10 cities across the US. We get to select one to move to, the question is which one makes the most fiscal sense to move to. We need to determine if we should purchase a home with a mortgage on various terms or rent our new home in your selected city.
 
-To help determine what you should do use our Rent-v-Buy module to use current housing data and your personal imputs to determine if you shoudl Rent or Purchase you new home in your city of choice. In order to make the best choice you will be presented with the accrued equity in a mortgage of your home purchase and your cost incurred from Renting a home for your selected amount of years. 
+To help determine what you should do use our Rent-v-Buy module to use current housing data and your personal inputs to determine if you should Rent or Purchase your new home in your city of choice. In order to make the best choice you will be presented with the accrued equity in a mortgage of your home purchase and your cost incurred from Renting a home for your selected amount of years. 
 
 
 
@@ -18,8 +18,6 @@ This code was created with Python 3.9 and Jupyter Lab
 * [numpy] - For creating mortgage calculations
 
 * [matplotlib] - For implementing our plots and data into our GUI
-
-* []
 
 
 
@@ -49,7 +47,7 @@ Step 2: Click on Page 1 to continue, here the GUI displays a various data points
         
 Step 3: Analyze the print out
         Here are the relevant data points that were pulled from our RedFin DataFrame,
-        Keep in mine this is only a list list for the selected city:
+        Keep in mind this is only a list for the selected city:
 
         -Monthly Mortgage Payment with a 20% downpayment
         -Monthly Mortgage Payment with a 5% downpayment
@@ -75,7 +73,7 @@ Step 5: Analyze the print out
         -DownPayment, percentage shown from the the above Mortgage options
         -Loan Amount, which is calculated from the total loan subtract the downpayment
         -Interest Rate, is pulled from a database of current average rates for each Mortgage option
-        -Loan Duration, determined by the loan term and displated in Months
+        -Loan Duration, determined by the loan term and displayed in Months
         -Monthly Taxes, pulled from our dataset and calculated for home price
         -Total Monthly Payment, calculated from Loan Amount, Loan Duration and Interest
         -Total Cost of Loan, creates a sum of all costs for the loan duration
