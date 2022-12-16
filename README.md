@@ -3,7 +3,7 @@
 
 We have been hired as a Fintech data analyst at FTX. We will have to determine where to move to next. FTX has offices in 10 cities across the US. We get to select one to move to, the question is which one makes the most fiscal sense to move to. We need to determine if we should purchase a home with a mortgage on various terms or rent our new home in your selected city.
 
-To help determine what you should do use our Rent-v-Buy module to use current housing data and your personal inputs to determine if you should Rent or Purchase your new home in your city of choice. In order to make the best choice you will be presented with the accrued equity in a mortgage of your home purchase and your cost incurred from Renting a home for your selected amount of years. 
+To help determine what we should do, use the Rent-v-Buy app. The app uses current housing data and specific inputs to determine if we should Rent or Purchase our new home in our city of choice. In order to make the best choice we will be presented with the total estimated cost of mortgage of our home purchase and our cost incurred from renting a home for our selected city.
 
 
 
@@ -62,7 +62,7 @@ Step 3: Analyze the print out
 Step 4: Click on Page 2 to contiue, here the GUI displays a breakdown 
 
 Step 5: Analyze the print out
-        Here you will see a breakdown of the Average Mortgage details for the possible options.
+        Here we will see a breakdown of the Average Mortgage details for the possible options.
         We've been given 4 different Mortage options:
         1) 15 year, 5% downpayment
         2) 15 year, 20% downpayment
@@ -81,8 +81,6 @@ Step 5: Analyze the print out
         -Total Cost of Loan, creates a sum of all costs for the loan duration
 
 
-    *** graphs for amortization and loan terms
-
 
 Step 6: Click on Page 3 to continue, here the GUI displays the map of the selected city
 
@@ -92,7 +90,7 @@ Step 7: Here we are able to look around the general area of the selected city
 
 Below is a Demo Video link to see how the GUI can be used      
 
-    *** add in video
+    (https://www.youtube.com/watch?v=tWnIwwQ7OVg)
 
 
 ## Contributors
